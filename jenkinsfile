@@ -20,8 +20,8 @@ pipeline{
         success{
             publishHTML(target : [
                 allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
                 reportDir: 'reporter/',
                 reportFiles: 'index.html',
                 reportName: 'HTML Report',
