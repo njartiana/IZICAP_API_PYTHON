@@ -5,7 +5,7 @@ pipeline{
         stage('Checkout project IZICAP_API_PYTHON'){
             steps{
                 sh 'rm -rf *'
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'IZICAP_API_PYTHON', url: 'https://github.com/njartiana/IZICAP_API_PYTHON']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'IZICAP_API_PYTHON', url: 'https://github.com/njartiana/IZICAP_API_PYTHON']]])
             }
         }
         stage('Run test'){
@@ -22,7 +22,7 @@ pipeline{
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
                 keepAll: false,
-                reportDir: 'reporter',
+                reportDir: 'reporter/',
                 reportFiles: 'index.html',
                 reportName: 'HTML Report',
                 reportTitles: '',
