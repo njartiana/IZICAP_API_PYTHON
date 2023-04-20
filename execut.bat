@@ -1,0 +1,2 @@
+cd F:\ALL_GIT_PROJECT\IZICAP_API_PYTHON
+python -m pytest -m end2end tests/token_manager/token_manager.py tests/user_manager/user_manager.py -v -W ignore --html-report=reporter/html_reporter/report_api.html
