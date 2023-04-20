@@ -42,7 +42,7 @@ def test_generate_token(generate_token):
 #     assert_that(expirationDate).is_not_empty()
 #     print("\n token = {token_request}".format(token_request=token_request))
 
-@pytest.mark.skip
+
 @pytest.mark.non_passant
 @pytest.mark.end2end
 @pytest.mark.parametrize("url, body, headers, code_statut", config.base_data)

@@ -1,0 +1,33 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Checkout project IZICAP_API_PYTHON'){
+            steps{
+                sh 'rm -rf *'
+                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'IZICAP_API_PYTHON', url: 'https://github.com/njartiana/IZICAP_API_PYTHON']]])
+            }
+        }
+        stage('Run test'){
+            steps{
+                script{
+                    sh 'python -m pytest -m end2end tests/token_manager/token_manager.py tests/user_manager/user_manager.py -v -W ignore --html-report=reporter/html_reporter/report_api.html'
+                }
+            }
+        }
+    }
+    post{
+        success{
+            publishHTML(target : [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: false,
+                reportDir: 'reporter',
+                reportFiles: 'index.html',
+                reportName: 'HTML Report',
+                reportTitles: '',
+                useWrapperFileDirectly: true
+                ])
+        }
+    }
+}
